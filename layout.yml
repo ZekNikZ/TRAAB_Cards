@@ -1,0 +1,124 @@
+origin:
+  x:  '0.0in'
+  y:  '0.0in'
+  x1: '0.0in'
+  y1: '0.0in'
+  x2: '0.0in'
+  y2: '0.0in'
+  x3: '0.0in'
+  y3: '0.0in'
+
+card_width:
+  width: '2.5in'
+
+card_height:
+  height: '3.5in'
+
+background:
+  extends:
+    - origin
+    - card_height
+    - card_width
+  stroke_width: 0
+
+toprect:
+  extends:
+    - origin
+    - card_width
+  height: '0.702in'
+  stroke_width: 0
+
+toptri:
+  extends:
+    - origin
+  x1: '+= 0.0in'
+  y1: '+= 0.7in'
+  x2: '+= 2.5in'
+  y2: '+= 0.7in'
+  x3: '+= 2.5in'
+  y3: '+= 1.0in'
+  stroke_width: 0
+
+botrect:
+  extends:
+    - origin
+    - card_width
+  y: '+= 2.498in'
+  height: '1.02in'
+  stroke_width: 0
+
+bottri:
+  extends:
+    - origin
+  x1: '+= 0.0in'
+  y1: '+= 2.5in'
+  x2: '+= 2.5in'
+  y2: '+= 2.5in'
+  x3: '+= 0.0in'
+  y3: '+= 2.2in'
+  stroke_width: 0
+
+teamicon:
+  extends:
+    - origin
+  x: ' += 1.95in'
+  y: ' += 0.15in'
+  width: '0.4in'
+  height: '0.4in'
+
+teamtext:
+  extends:
+    - origin
+  x: ' += 0.15in'
+  y: ' += 0.19in'
+  color: '#fff'
+  font: 'Candal bold 17'
+
+rolename:
+  extends:
+    - origin
+  x: ' += 0.15in'
+  y: ' += 2.4in'
+  height: '0.3in'
+  valign: 'bottom'
+  color: '#fff'
+  font: 'Candal bold 14'
+
+rolename_big:
+  extends:
+    - rolename
+  font: 'Candal bold 12'
+
+wincond:
+  extends:
+    - origin
+  x: ' += 0.15in'
+  y: ' += 2.7in'
+  width: '2.2in'
+  height: '0.8in'
+  wrap: 'word'
+  color: '#fff'
+  font: 'Roboto 11'
+
+flavortext:
+  extends:
+    - origin
+  x: ' += 0.15in'
+  y: ' += 1in'
+  width: '2.2in'
+  height: '0.2in'
+  valign: 'bottom'
+  color: '#fff'
+  font: 'Roboto weight=900 13'
+
+abilitytext:
+  extends:
+    - origin
+  x: ' += 0.15in'
+  y: ' += 1.2in'
+  width: '2.2in'
+  height: '1in'
+  wrap: 'word'
+  spacing: -5
+  color: '#fff'
+  font: 'Rubik italic 12'
