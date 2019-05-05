@@ -4,8 +4,8 @@ require 'game_icons'
 #data = Squib.csv file: 'data.csv'
 data = Squib.xlsx file: 'data.xlsx'
 
-primary_colors = { 'BLUE' => '#505EA7', 'RED' => '#9F2A27', 'GRAY' => '#999999', 'YELLOW' => '#A79850', 'PURPLE' => '#A450A7', 'GREEN' => '#50A757', 'PINK' => '#D675C7' }
-secondary_colors = { 'BLUE' => '#7F8DBE', 'RED' => '#B76969', 'GRAY' => '#CCCCCC', 'YELLOW' => '#BEB37F', 'PURPLE' => '#BC7FBE', 'GREEN' => '#7FBE84', 'PINK' => '#F986E8' }
+primary_colors = { 'BLUE' => '#505EA7', 'RED' => '#9F2A27', 'GRAY' => '#6F6F6F', 'YELLOW' => '#C9A82A', 'PURPLE' => '#8f14b8', 'GREEN' => '#50A757', 'PINK' => '#f76eb3', 'BLACK' => '#000' }
+secondary_colors = { 'BLUE' => '#7F8DBE', 'RED' => '#B76969', 'GRAY' => '#999999', 'YELLOW' => '#D0BA62', 'PURPLE' => '#b366cc', 'GREEN' => '#7FBE84', 'PINK' => '#f5a3cc', 'BLACK' => '#000' }
 team_icons = { 'BLUE' => 'allied-star', 'RED' => 'unlit-bomb', 'GRAY' => 'perspective-dice-six-faces-random', 'YELLOW' => 'on-sight', 'PURPLE' => 'perspective-dice-six-faces-random', 'GREEN' => 'perspective-dice-six-faces-random', 'PINK' => 'easter-egg' }.map { |k, str| [k, GameIcons.get(str).recolor(fg: 'fff', bg: 'fff0').string] }.to_h
 custom_icons = { 'YOG SOTHOTH' => 'interlaced-tentacles', 'ZOMBIE' => 'raise-zombie', 'BEHOLDER' => 'cowled', 'LEPRECHAUN' => 'shamrock' }.map { |k, str| [k, GameIcons.get(str).recolor(fg: 'fff', bg: 'fff0').string] }.to_h
 names = ['RED', 'BLUE', 'GRAY', 'YELLOW', 'PURPLE', 'GREEN']
@@ -13,8 +13,8 @@ names = ['RED', 'BLUE', 'GRAY', 'YELLOW', 'PURPLE', 'GREEN']
 counts = data['count']
 data = data.each{|name, values| data[name] = values.zip(counts).map{|index, count| [index]*count.to_i}.flatten}
 
-#hint_state = 'off'
-hint_state = 'black'
+hint_state = 'off'
+#hint_state = 'black'
 
 Squib::Deck.new(width: '2.5in', height: '3.5in', cards: data['role'].size, layout: 'layout.yml') do
   rect layout: 'background', fill_color: data['color'].map { |color| color ? secondary_colors[color.upcase] : 'white' }
@@ -26,15 +26,18 @@ Squib::Deck.new(width: '2.5in', height: '3.5in', cards: data['role'].size, layou
   triangle layout: 'bottri', fill_color: main_color
   rect layout: 'botrect', fill_color: main_color
 
-  svg layout: 'teamicon', data: data['color'].each_with_index.map { |color, i| custom_icons.key?(data['role'][i].upcase) ? custom_icons[data['role'][i].upcase] : team_icons[color ? color.upcase : 'BLUE'] }
-  text layout: 'teamtext', str: data['color'].map { |color| (!color || color.upcase == 'PURPLE' ? '????' : color.upcase) + ' TEAM' }, hint: hint_state
+  not_black_range = (0..(data['role'].size - 1)).to_a
+  not_black_range.delete_at(data['role'].find_index('THE BLACK'))
 
-  text layout: 'rolename', str: data['role'].map { |role| role.upcase }, hint: hint_state, font_size: data['role'].map { |role| !role || role.length < 14 ? 14 : role.length < 16 ? 13 : 12 }
+  svg layout: 'teamicon', data: data['color'].each_with_index.map { |color, i| custom_icons.key?(data['role'][i].upcase) ? custom_icons[data['role'][i].upcase] : team_icons[color ? color.upcase : 'BLUE'] }, range: not_black_range
+  text layout: 'teamtext', str: data['color'].each_with_index.map { |color, i| data['role'][i] == 'ZOMBIE' ? 'TEAM ZOMBIE' : (!color || color.upcase == 'PURPLE' ? '????' : color.upcase) + ' TEAM' }, hint: hint_state, range: not_black_range
 
-  text layout: 'wincond', str: data['wincond'], hint: hint_state
+  text layout: 'rolename', str: data['role'].map { |role| role.upcase }, hint: hint_state, font_size: data['role'].map { |role| !role || role.length < 8 ? 16 : role.length < 13 ? 15 : role.length < 14 ? 14 : role.length < 16 ? 13 : 12 }
+
+  text layout: 'wincond', str: data['wincond'], hint: hint_state, font_size: data['wincond'].map { |wincond| !wincond || wincond.length < 127 ? 11 : wincond.length < 138 ? 10 : 9 }
   
   text layout: 'flavortext', str: data['flavor'], hint: hint_state, font_size: data['flavor'].map { |flavor| !flavor || flavor.length < 20 ? 13 : flavor.length < 24 ? 12 : 11 }
-  text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 140 ? 11 : ability.length < 160 ? 10 : 9 }
+  text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 140 ? 11 : ability.length < 186 ? 10 : ability.length < 246 ? 9 : 8 }
 
   save_pdf gap: 5
 end
