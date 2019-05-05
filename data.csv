@@ -1,15 +1,9 @@
 role,color,flavor,ability,wincond,count
-Ninja,YELLOW,"Live, damn you! Live!",Use the power of another player to win the game!,Win!,1
-President's Daughter,BLUE,,Steal 1 card from another player,"If you are in the same room as Paper and opposite room as Rock, you win.",1
-President,BLUE,,Take a card from the discard pile,"If you gain the ""dead"" condition, you lose.",,1
-Robot,RED,,Draw two cards,,1
-Robot,BLUE,,Draw two cards,,1
-Robot,PURPLE,,Draw two cards,,1
-Robot,GRAY,,Draw two cards,,1
-Robot,YELLOW,,Draw two cards,,1
-Robot,PINK,,Draw two cards,,1
-Zombie,GREEN,,Draw two cards,,1
-Beholder,GREEN,,Draw two cards,,1
-Leprechaun,GREEN,,Draw two cards,,1
-Yog Sothoth,GREEN,,Draw two cards,,10
-Robot,GREEN,,Draw two cards,,1
+Robot,RED,Flavor text,Draw two cards,Win the game!,1
+Robot,BLUE,Flavor text,Draw two cards,Win the game!,1
+Robot,PURPLE,Flavor text,Draw two cards,Win the game!,1
+Robot,GRAY,Flavor text,Draw two cards,Win the game!,1
+Robot,YELLOW,Flavor text,Draw two cards,Win the game!,1
+Robot,PINK,Flavor text,Draw two cards,Win the game!,1
+Robot,GREEN,Flavor text,Draw two cards,Win the game!,1
+Robot,BLACK,Flavor text,Draw two cards,Win the game!,1
