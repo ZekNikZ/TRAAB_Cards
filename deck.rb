@@ -1,8 +1,8 @@
 require 'squib'
 require 'game_icons'
 
-data = Squib.csv file: 'data.csv'
-#data = Squib.xlsx file: 'data.xlsx'
+#data = Squib.csv file: 'data.csv'
+data = Squib.xlsx file: 'data.xlsx'
 
 primary_colors = { 'BLUE' => '#505EA7', 'RED' => '#9F2A27', 'GRAY' => '#6F6F6F', 'YELLOW' => '#C9A82A', 'PURPLE' => '#8f14b8', 'GREEN' => '#4db353', 'PINK' => '#f76eb3', 'BLACK' => '#000' }
 secondary_colors = { 'BLUE' => '#7F8DBE', 'RED' => '#B76969', 'GRAY' => '#999999', 'YELLOW' => '#D0BA62', 'PURPLE' => '#b366cc', 'GREEN' => '#7FBE84', 'PINK' => '#f5a3cc', 'BLACK' => '#000' }
@@ -38,7 +38,7 @@ Squib::Deck.new(width: '2.5in', height: '3.5in', cards: data['role'].size, layou
   text layout: 'wincond', str: data['wincond'], hint: hint_state, font_size: data['wincond'].map { |wincond| !wincond || wincond.length < 127 ? 11 : wincond.length < 138 ? 10 : 9 }
   
   text layout: 'flavortext', str: data['flavor'], hint: hint_state, font_size: data['flavor'].map { |flavor| !flavor || flavor.length < 20 ? 13 : flavor.length < 24 ? 12 : 11 }
-  text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 140 ? 11 : ability.length < 186 ? 10 : ability.length < 246 ? 9 : 8 }
+  text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 140 ? 11 : ability.length < 186 ? 10 : ability.length < 246 ? 9 : 8}
 
   save_pdf gap: 5
 end
