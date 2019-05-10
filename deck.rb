@@ -35,10 +35,10 @@ Squib::Deck.new(width: '2.5in', height: '3.5in', cards: data['role'].size, layou
 
   text layout: 'rolename', str: data['role'].map { |role| role.upcase }, hint: hint_state, font_size: data['role'].map { |role| !role || role.length < 8 ? 16 : role.length < 13 ? 15 : role.length < 14 ? 14 : role.length < 16 ? 13 : 12 }
 
-  text layout: 'wincond', str: data['wincond'], hint: hint_state, font_size: data['wincond'].map { |wincond| !wincond || wincond.length < 127 ? 11 : wincond.length < 138 ? 10 : 9 }
+  text layout: 'wincond', str: data['wincond'], hint: hint_state, font_size: data['wincond'].map { |wincond| !wincond || wincond.length < 127 ? 11 : wincond.length < 138 ? 10 : wincond.length < 180 ? 9 : 8}
   
-  text layout: 'flavortext', str: data['flavor'], hint: hint_state, font_size: data['flavor'].map { |flavor| !flavor || flavor.length < 20 ? 13 : flavor.length < 24 ? 12 : 11 }
-  text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 140 ? 11 : ability.length < 186 ? 10 : ability.length < 246 ? 9 : 8}
+  text layout: 'flavortext', str: data['flavor'].map { |flavor| flavor ? flavor.upcase : '' }, hint: hint_state, font_size: data['flavor'].map { |flavor| !flavor || flavor.length < 18 ? 12 : flavor.length < 22 ? 11 : 10 }
+  text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 135 ? 11 : ability.length < 186 ? 10 : ability.length < 246 ? 9 : 8}
 
   save_pdf gap: 5
 end
