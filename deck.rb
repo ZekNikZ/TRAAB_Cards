@@ -41,6 +41,6 @@ Squib::Deck.new(width: '2.5in', height: '3.5in', cards: data['role'].size, layou
   text layout: 'abilitytext', str: data['ability'], hint: hint_state, font_size: data['ability'].map { |ability| !ability || ability.length < 120 ? 12 : ability.length < 135 ? 11 : ability.length < 186 ? 10 : ability.length < 246 ? 9 : 8}
 
   #save_pdf gap: 5
-  save_pdf gap: 5, height: 3300, width: 5100
-  #save_pdf gap: 5, height: 2550, width: 4200
+  #save_pdf gap: 5, height: 3300, width: 5100
+  save_pdf gap: 5, height: 2550, width: 4200
 end
